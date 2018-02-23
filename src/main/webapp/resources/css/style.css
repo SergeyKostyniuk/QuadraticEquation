@@ -1,0 +1,13 @@
+body {
+	background-color: wheat;
+}
+
+h1 {
+	text-align: center;
+}
+
+div.main {
+	float: left;
+	margin-left: 35%;
+	width: 300px;
+}
