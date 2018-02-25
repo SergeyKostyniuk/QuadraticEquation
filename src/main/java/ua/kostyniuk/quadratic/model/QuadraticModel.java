@@ -1,5 +1,4 @@
 package ua.kostyniuk.quadratic.model;
-import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -77,5 +76,38 @@ public class QuadraticModel {
     public String toString() {
         return "Quadratic [id=" + id + ", a=" + a + ", b="
                 + b + ", c=" + c + ", x1=" + x1 + ", x2=" + x2 +"]";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof QuadraticModel)) return false;
+
+        QuadraticModel that = (QuadraticModel) o;
+
+        if (getId() != that.getId()) return false;
+        if (Double.compare(that.getA(), getA()) != 0) return false;
+        if (Double.compare(that.getB(), getB()) != 0) return false;
+        if (Double.compare(that.getC(), getC()) != 0) return false;
+        if (Double.compare(that.getX1(), getX1()) != 0) return false;
+        return Double.compare(that.getX2(), getX2()) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        result = getId();
+        temp = Double.doubleToLongBits(getA());
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(getB());
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(getC());
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(getX1());
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(getX2());
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        return result;
     }
 }

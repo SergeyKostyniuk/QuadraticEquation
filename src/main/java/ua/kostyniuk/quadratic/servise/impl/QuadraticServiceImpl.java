@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ua.kostyniuk.quadratic.dao.QuadraticDao;
+import ua.kostyniuk.quadratic.error.NotRootException;
 import ua.kostyniuk.quadratic.model.QuadraticModel;
 import ua.kostyniuk.quadratic.servise.QuadraticService;
 
@@ -19,7 +20,7 @@ public class QuadraticServiceImpl implements QuadraticService {
 
 
     @Override
-    public QuadraticModel calcQuadratic(String numA, String numB, String numC) {
+    public QuadraticModel calcQuadratic(String numA, String numB, String numC)  {
         double a = Double.parseDouble(numA);
         double b = Double.parseDouble(numB);
         double c = Double.parseDouble(numC);
@@ -29,7 +30,7 @@ public class QuadraticServiceImpl implements QuadraticService {
         d = (b * b) - (4 * a * c);
 
         if (d < 0) {
-            throw new ArithmeticException("no real roots found");
+            throw new NotRootException("no real roots found");
         } else if (d == 0) {
             x1 = (-b) / (2 * a);
             x2 = x1;
@@ -40,9 +41,6 @@ public class QuadraticServiceImpl implements QuadraticService {
         }
 
         QuadraticModel model = new QuadraticModel();
-
-     System.out.println(model.getId());
-
 
         model.setA(a);
         model.setB(b);
@@ -59,38 +57,4 @@ public class QuadraticServiceImpl implements QuadraticService {
     public List<QuadraticModel> findAllQuadratic() {
         return dao.findAllQuadratic();
     }
-
-//    @Override
-//    public QuadraticModel getResult(String numA, String numB, String numC) {
-//        double a = Double.parseDouble(numA);
-//        double b = Double.parseDouble(numB);
-//        double c = Double.parseDouble(numC);
-//
-//        double x1, x2, d;
-//
-//        d = (b * b) - (4 * a * c);
-//
-//        if (d < 0) {
-//            throw new ArithmeticException("no real roots found");
-//        } else if (d == 0) {
-//            x1 = (-b) / (2 * a);
-//            x2 = x1;
-//
-//        } else {
-//            x1 = (-b + Math.sqrt(d)) / (2 * a);
-//            x2 = (-b - Math.sqrt(d)) / (2 * a);
-//        }
-//
-//        QuadraticModel model = new QuadraticModel();
-//
-//        model.setA(a);
-//        model.setB(b);
-//        model.setC(c);
-//        model.setX1(x1);
-//        model.setX2(x2);
-//
-//        // TODO: to db
-//
-//        return model;
-//    }
 }

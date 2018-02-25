@@ -6,7 +6,7 @@ import ua.kostyniuk.quadratic.model.QuadraticModel;
 
 import java.util.List;
 
-@Repository//("quadraticDao")
+@Repository("quadraticDao")
 public class QuadraticDaoImpl extends AbstractDao<Integer, QuadraticModel> implements QuadraticDao {
     @Override
     public void saveQuadratic(QuadraticModel quadraticModel) {
