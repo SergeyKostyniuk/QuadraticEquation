@@ -1,5 +1,9 @@
 package ua.kostyniuk.quadratic.controller;
 
+import org.springframework.context.MessageSource;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import ua.kostyniuk.quadratic.model.QuadraticModel;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,21 +14,31 @@ import ua.kostyniuk.quadratic.servise.QuadraticService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 @Controller
+@RequestMapping("/")
 public class QuadraticController {
 
-	private final QuadraticService quadraticService;
+	@Autowired
+	QuadraticService service;
 
 	@Autowired
-	public QuadraticController(QuadraticService quadraticService) {
-		this.quadraticService = quadraticService;
+	MessageSource messageSource;
+
+	@RequestMapping(value = { "/1" }, method = RequestMethod.GET)
+	public String listEmployees(ModelMap model) {
+
+//		List<QuadraticModel> employees = service.findAllQuadratic();
+//		model.addAttribute("employees", employees);
+		return "result";
 	}
 
-	@GetMapping("/")
+//
+//
+//
+	@RequestMapping("/")
 	public String start(Model model) {
-
-		model.addAttribute("name", "Serhii Kostyniuk");
 
 		return "welcome";
 	}
@@ -36,7 +50,7 @@ public class QuadraticController {
 		b = request.getParameter("b");
 		c = request.getParameter("c");
 
-		QuadraticModel quadraticModel = quadraticService.getResult(a, b, c);
+		QuadraticModel quadraticModel = service.calcQuadratic(a, b, c);
 		model.addAttribute("model", quadraticModel);
 		return "result";
 	}

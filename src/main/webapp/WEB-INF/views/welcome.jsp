@@ -28,15 +28,9 @@
 				<input type="text" name="c" class="form-control" id="exampleInputC" aria-describedby="emailHelp"
 					   placeholder="Enter c">
 			</div>
-
-			<div class="form-check">
-				<input type="checkbox" class="form-check-input" id="exampleCheck1">
-				<label class="form-check-label" for="exampleCheck1">Get job</label>
-			</div>
 			<button type="submit" class="btn btn-primary">Submit</button>
 		</form>
 	</div>
 
-	<p>Welcome, ${name}</p>
 </body>
 </html>
