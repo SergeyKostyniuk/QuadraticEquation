@@ -3,10 +3,10 @@ package ua.kostyniuk.quadratic.servise.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ua.kostyniuk.quadratic.dao.QuadraticDao;
 import ua.kostyniuk.quadratic.error.NotRootException;
 import ua.kostyniuk.quadratic.model.QuadraticModel;
 import ua.kostyniuk.quadratic.servise.QuadraticService;
+import ua.kostyniuk.quadratic.dao.QuadraticDao;
 
 import java.util.List;
 

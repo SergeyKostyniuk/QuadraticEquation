@@ -1,6 +1,5 @@
 package ua.kostyniuk.quadratic.controller;
 
-import org.springframework.context.MessageSource;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ua.kostyniuk.quadratic.error.NotRootException;
 import ua.kostyniuk.quadratic.model.QuadraticModel;
